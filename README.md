@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tempestius 🌩️
 
-## Getting Started
+**Conquer the elements, one forecast at a time.**
 
-First, run the development server:
+Tempestius is a blazing-fast weather dashboard built with **Next.js 15**, designed to deliver accurate weather forecasts while leveraging the **4 levels of caching** for optimal performance and user experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌟 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Search Weather by City**: Instantly fetch current weather conditions for any city worldwide.
+- **Favorites Management**: Save your favorite cities for quick access.
+- **Cached Results**: Utilize browser, server-side, and client-side caching for fast and efficient weather data retrieval.
+- **Recent Searches**: View previously searched cities with cached data.
+- **Dynamic and Static Rendering**:
+  - Frequently accessed data is pre-rendered using **ISR**.
+  - On-demand rendering for lesser-used data with **SSR**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend**: [Next.js 15](https://nextjs.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) for responsive and modern UI.
+- **Data Fetching**: [SWR](https://swr.vercel.app/) for client-side caching and revalidation.
+- **Backend API**: Next.js API routes for server-side caching.
+- **External API**: [OpenWeatherMap](https://openweathermap.org/api) for weather data.
+- **Server-Side Cache**: Redis (or an in-memory store).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚡ Caching Layers Implemented
+
+1. **CDN Caching**:
+   - Static assets served via CDN with optimal caching strategies.
+
+2. **Browser Caching**:
+   - User preferences (e.g., favorite cities) stored in `localStorage`.
+   - HTTP headers like `Cache-Control` ensure efficient caching for API responses.
+
+3. **Server-Side Caching**:
+   - Redis caching to reduce calls to external APIs.
+
+4. **Client-Side Caching**:
+   - SWR for caching and re-fetching API data on the client.
+
+---
+
+## 🎯 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v16 or later)
+- **Redis** (optional, for server-side caching)
+- An API key from [OpenWeatherMap](https://openweathermap.org/api).
+
+---
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/bryan936M/tempestius.git
+   cd tempestius
+
+2. Install dependencies:
+
+   ```bash
+   yarn install
+
+3. Run unit tests for components:
+
+   ```bash
+   yarn run test
+   
+4. Create a .env.local file in the root directory and add the following:
+
+   ```bash
+   NEXT_PUBLIC_WEATHER_API_KEY=your_openweathermap_api_key
+   REDIS_URL=your_redis_connection_url (optional)
+
+5. Run the development server:
+
+   ```bash
+   yarn run dev
+
+6. Open your browser at <http://localhost:3000>.
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 🛠️ Usage
+
+1. Search Weather
+
+   - Enter a city name in the search bar to fetch the current weather.
+  
+2. Manage Favorites
+
+   - Click the “Save to Favorites” button to save a city.
+   - Access saved cities from the “Favorites” section.
+  
+3. View Recent Searches
+
+   - Cached weather data for your recent searches will be displayed automatically.
+
+## 📚 Roadmap
+
+- Add 7-day weather forecasts with visual charts.
+- Push notifications for severe weather alerts.
+- Dark mode toggle for improved accessibility.
+- Multi-language support.
+
+## 🛡️ License
+
+  This project is licensed under the MIT License.
